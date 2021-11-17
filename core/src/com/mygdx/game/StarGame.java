@@ -8,18 +8,20 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class StarGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	Texture imgGalaxy;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		imgGalaxy = new Texture("galaxy.jpg");
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 		batch.begin();
-		batch.draw(img, 0, 0);
+		batch.draw(imgGalaxy, 0, 0, 650, 500);
 		batch.end();
 	}
 	
