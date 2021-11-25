@@ -26,7 +26,6 @@ public class MenuScreen extends BaseScreen {
         batch.begin();
         batch.draw(img, touch.x, touch.y);
         batch.end();
-        touch.add(v);
     }
 
     @Override
