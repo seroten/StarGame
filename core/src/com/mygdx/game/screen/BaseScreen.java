@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.math.MatrixUtils;
 import com.mygdx.game.math.Rect;
 
+
 public class BaseScreen implements Screen, InputProcessor {
 
     protected SpriteBatch batch;
