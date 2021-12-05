@@ -6,7 +6,6 @@ import com.mygdx.game.math.Rect;
 import com.mygdx.game.screen.impl.GameScreen;
 import com.mygdx.game.sprite.BaseButton;
 
-
 public class ButtonPlay extends BaseButton {
 
     private static final float HEIGHT = 0.25f;

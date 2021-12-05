@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.math.Rect;
 import com.mygdx.game.sprite.Sprite;
 
-
 public class Background extends Sprite {
 
     public Background(Texture texture) {

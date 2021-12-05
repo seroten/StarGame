@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.math.Rect;
 import com.mygdx.game.sprite.Sprite;
 
-
 public class Star extends Sprite {
 
     private Rect worldBounds;

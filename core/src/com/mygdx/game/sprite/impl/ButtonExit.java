@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.math.Rect;
 import com.mygdx.game.sprite.BaseButton;
 
-
 public class ButtonExit extends BaseButton {
 
     private static final float HEIGHT = 0.2f;

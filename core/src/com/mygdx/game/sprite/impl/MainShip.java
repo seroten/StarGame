@@ -2,10 +2,11 @@ package com.mygdx.game.sprite.impl;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.math.Rect;
+import com.mygdx.game.pool.impl.BulletPool;
 import com.mygdx.game.sprite.Sprite;
-
 
 public class MainShip extends Sprite {
 
@@ -16,6 +17,12 @@ public class MainShip extends Sprite {
     private final Vector2 v;
     private final Vector2 v0;
 
+    private final BulletPool bulletPool;
+    private final TextureRegion bulletRegion;
+    private final Vector2 bulletV;
+    private final float bulletHeight;
+    private final int damage;
+
     private Rect worldBounds;
 
     private boolean pressedLeft;
@@ -24,11 +31,16 @@ public class MainShip extends Sprite {
     private int leftPointer = INVALID_POINTER;
     private int rightPointer = INVALID_POINTER;
 
-    public MainShip(TextureAtlas atlas) {
+    public MainShip(TextureAtlas atlas, BulletPool bulletPool) {
         super(atlas.findRegion("main_ship"), 1, 2, 2);
         this.v = new Vector2();
         this.v0 = new Vector2(0.5f, 0f);
-     }
+        this.bulletPool = bulletPool;
+        this.bulletRegion = atlas.findRegion("bulletMainShip");
+        this.bulletV = new Vector2(0, 0.5f);
+        this.bulletHeight = 0.01f;
+        this.damage = 1;
+    }
 
     @Override
     public void resize(Rect worldBounds) {
@@ -40,13 +52,20 @@ public class MainShip extends Sprite {
     @Override
     public void update(float delta) {
         pos.mulAdd(v, delta);
-        if (getRight() > worldBounds.getRight()) {
-            setRight(worldBounds.getRight());
-            stop();
+//        if (getRight() > worldBounds.getRight()) {
+//            setRight(worldBounds.getRight());
+//            stop();
+//        }
+//        if (getLeft() < worldBounds.getLeft()) {
+//            setLeft(worldBounds.getLeft());
+//            stop();
+//        }
+
+        if (getLeft() > worldBounds.getRight()) {
+            setRight(worldBounds.getLeft());
         }
-        if (getLeft() < worldBounds.getLeft()) {
-            setLeft(worldBounds.getLeft());
-            stop();
+        if (getRight() < worldBounds.getLeft()) {
+            setLeft(worldBounds.getRight());
         }
     }
 
@@ -100,6 +119,9 @@ public class MainShip extends Sprite {
                 pressedRight = true;
                 moveRight();
                 break;
+            case Input.Keys.UP:
+                shoot();
+                break;
         }
         return false;
     }
@@ -140,4 +162,8 @@ public class MainShip extends Sprite {
         v.setZero();
     }
 
+    private void shoot() {
+        Bullet bullet = bulletPool.obtain();
+        bullet.set(this, bulletRegion, pos, bulletV, bulletHeight, worldBounds, damage);
+    }
 }
