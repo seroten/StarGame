@@ -4,13 +4,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-
 import com.mygdx.game.math.Rect;
 import com.mygdx.game.screen.BaseScreen;
 import com.mygdx.game.sprite.impl.Background;
 import com.mygdx.game.sprite.impl.ButtonExit;
 import com.mygdx.game.sprite.impl.ButtonPlay;
 import com.mygdx.game.sprite.impl.Star;
+
 
 public class MenuScreen extends BaseScreen {
 
@@ -93,12 +93,9 @@ public class MenuScreen extends BaseScreen {
 
     private void draw() {
         batch.begin();
-//        batch.setColor(1f, 1f, 1f, 1f);
         background.draw(batch);
         for (Star star : stars) {
-//            batch.setColor(Color.YELLOW);
             star.draw(batch);
-//            batch.setColor(Color.CLEAR);
         }
         buttonExit.draw(batch);
         buttonPlay.draw(batch);
