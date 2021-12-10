@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.math.Rect;
 import com.mygdx.game.pool.impl.BulletPool;
+import com.mygdx.game.pool.impl.ExplosionPool;
 import com.mygdx.game.sprite.Ship;
 
 public class EnemyShip extends Ship {
 
-    public EnemyShip(BulletPool bulletPool, Sound bulletSound, Rect worldBounds) {
+    public EnemyShip(ExplosionPool explosionPool, BulletPool bulletPool, Sound bulletSound, Rect worldBounds) {
+        this.explosionPool = explosionPool;
         this.bulletPool = bulletPool;
         this.bulletSound = bulletSound;
         this.worldBounds = worldBounds;
@@ -23,7 +25,7 @@ public class EnemyShip extends Ship {
         if (getTop() > worldBounds.getTop()) {
             v.set(0, -0.3f);
             reloadTimer = reloadInterval * 0.8f;
-        }else {
+        } else {
             v.set(v0);
         }
         if (getBottom() < worldBounds.getBottom()) {
@@ -51,5 +53,13 @@ public class EnemyShip extends Ship {
         this.reloadInterval = reloadInterval;
         setHeightProportion(height);
         this.hp = hp;
+    }
+
+    public boolean isBulletCollision(Bullet bullet) {
+        return !(bullet.getRight() < getLeft()
+                || bullet.getLeft() > getRight()
+                || bullet.getBottom() > getTop()
+                || bullet.getTop() < pos.y
+        );
     }
 }
