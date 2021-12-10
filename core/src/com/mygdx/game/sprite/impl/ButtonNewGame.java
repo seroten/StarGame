@@ -8,7 +8,7 @@ import com.mygdx.game.sprite.BaseButton;
 public class ButtonNewGame extends BaseButton {
 
     private static final float HEIGHT = 0.05f;
-    private static final float MARGIN = -0.05f;
+    private static final float MARGIN = -0.04f;
 
     private final GameScreen gameScreen;
 
